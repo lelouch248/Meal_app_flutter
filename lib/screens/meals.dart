@@ -6,13 +6,11 @@ import 'package:meal_app/screens/meal_details.dart';
 class MealsScreen extends StatelessWidget {
   const MealsScreen(
       {super.key,
-      required this.onToggleFavourite,
       this.title,
       required this.meals});
 
   final String? title;
   final List<Meal> meals;
-  final void Function(Meal meal) onToggleFavourite;
 
   void _onSelectMealItem(BuildContext context, Meal meal) {
     Navigator.push(
@@ -20,7 +18,6 @@ class MealsScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (ctx) => MealDetailScreen(
           meal: meal,
-          onToggleFavourite: onToggleFavourite,
         ),
       ),
     );

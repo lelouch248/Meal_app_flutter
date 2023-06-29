@@ -1,41 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/models/meal.dart';
+import 'package:meal_app/providers/favourite_provider.dart';
 
-class FavouriteIconButton extends StatefulWidget {
-  const FavouriteIconButton(
-      {required this.meal, required this.onToggleFavourite, super.key});
-  final void Function(Meal meal) onToggleFavourite;
+class FavouriteIconButton extends ConsumerWidget {
+  const FavouriteIconButton({
+    required this.meal,
+    Key? key,
+  }) : super(key: key);
+
   final Meal meal;
 
   @override
-  State<FavouriteIconButton> createState() => _FavouriteIconButtonState();
-}
-
-class _FavouriteIconButtonState extends State<FavouriteIconButton> {
-  Color onPressColorFav = Colors.white;
-  bool onToggle = false;
-
-  void _onselectfavourite() {
-    widget.onToggleFavourite(widget.meal);
-    if (onToggle) {
-      setState(() {
-        onPressColorFav = Colors.white;
-        onToggle = false;
-      });
-    } else {
-      setState(() {
-        onPressColorFav = Colors.yellow;
-        onToggle = true;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
-      onPressed: _onselectfavourite,
+      onPressed: () {
+        ref.read(favouriteMealsProvider.notifier).toggleMealFavouriteStatus(meal);
+      },
       icon: const Icon(Icons.star),
-      color: onPressColorFav,
     );
   }
 }
