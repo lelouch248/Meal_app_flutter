@@ -13,11 +13,18 @@ class FavouriteIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isFavorite = ref.watch(favouriteMealsProvider).contains(meal);
+
     return IconButton(
       onPressed: () {
-        ref.read(favouriteMealsProvider.notifier).toggleMealFavouriteStatus(meal);
+        ref
+            .read(favouriteMealsProvider.notifier)
+            .toggleMealFavouriteStatus(meal);
       },
-      icon: const Icon(Icons.star),
+      icon: Icon(
+        Icons.star,
+        color: isFavorite ? Colors.yellow : Colors.grey,
+      ),
     );
   }
 }
