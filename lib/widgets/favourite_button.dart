@@ -20,6 +20,25 @@ class FavouriteIconButton extends ConsumerWidget {
         ref
             .read(favouriteMealsProvider.notifier)
             .toggleMealFavouriteStatus(meal);
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isFavorite
+                  ? '${meal.title} removed from favourites'
+                  : '${meal.title} added to favourites',
+            ),
+            duration: const Duration(seconds: 3),
+            shape: const StadiumBorder(),
+            behavior: SnackBarBehavior.floating,
+            action: SnackBarAction(
+              label: 'Dismiss',
+              onPressed: () {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              },
+            ),
+          ),
+        );
       },
       icon: Icon(
         Icons.star,

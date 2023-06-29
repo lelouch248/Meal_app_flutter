@@ -31,23 +31,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
     Filters.vegetarian: false,
   };
 
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        duration: const Duration(seconds: 3),
-        shape: const StadiumBorder(),
-        behavior: SnackBarBehavior.floating,
-        action: SnackBarAction(
-          label: 'Dismiss',
-          onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          },
-        ),
-      ),
-    );
-  }
+
 
   
   void _selectPage(int index) {
