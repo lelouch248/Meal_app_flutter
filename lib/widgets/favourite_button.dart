@@ -41,7 +41,7 @@ class FavouriteIconButton extends ConsumerWidget {
         );
       },
       icon: Icon(
-        Icons.star,
+        isFavorite ? Icons.done : Icons.star_border,
         color: isFavorite ? Colors.yellow : Colors.grey,
       ),
     );
