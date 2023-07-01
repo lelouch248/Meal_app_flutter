@@ -40,9 +40,22 @@ class FavouriteIconButton extends ConsumerWidget {
           ),
         );
       },
-      icon: Icon(
-        isFavorite ? Icons.done : Icons.star_border,
-        color: isFavorite ? Colors.yellow : Colors.grey,
+      icon: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        transitionBuilder: (child, animation) {
+          return RotationTransition(
+            turns: Tween(
+              begin: 0.8,
+              end: 1.0,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        child: Icon(
+          isFavorite ? Icons.done : Icons.star_border,
+          color: isFavorite ? Colors.yellow : Colors.grey,
+          key: ValueKey(isFavorite),
+        ),
       ),
     );
   }

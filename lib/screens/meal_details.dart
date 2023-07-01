@@ -12,18 +12,19 @@ class MealDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(meal.title),
-        actions: [
-          FavouriteIconButton(meal: meal)
-        ],
+        actions: [FavouriteIconButton(meal: meal)],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(
-              meal.imageUrl,
-              fit: BoxFit.cover,
-              height: 300,
-              width: double.infinity,
+            Hero(
+              tag: meal.id, // Hero animation
+              child: Image.network(
+                meal.imageUrl,
+                fit: BoxFit.cover,
+                height: 300,
+                width: double.infinity,
+              ),
             ),
             const SizedBox(height: 14),
             Text(
